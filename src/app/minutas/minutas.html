@@ -1,0 +1,83 @@
+<div class="container my-4">
+
+  <!-- Form Card -->
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-primary text-white">
+      <h5 class="mb-0">Nueva Minuta</h5>
+    </div>
+    <div class="card-body">
+
+      <form (ngSubmit)="agregar()">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Obra</label>
+            <input [(ngModel)]="nueva.obra" name="obra" required class="form-control" />
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Responsable</label>
+            <input [(ngModel)]="nueva.responsable" name="responsable" required class="form-control" />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea [(ngModel)]="nueva.descripcion" name="descripcion" class="form-control" rows="3"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Fecha</label>
+          <input type="date" [(ngModel)]="nueva.fecha" name="fecha" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">
+          Agregar Minuta
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+
+  <!-- Table Card -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-secondary text-white">
+      <h5 class="mb-0">Minutas Registradas</h5>
+    </div>
+    <div class="card-body p-0">
+
+      <table class="table table-striped mb-0" *ngIf="lista.length > 0; else noData">
+        <thead class="table-light">
+          <tr>
+            <th>Obra</th>
+            <th>Responsable</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th class="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of lista; let i = index">
+            <td>{{ m.obra }}</td>
+            <td>{{ m.responsable }}</td>
+            <td>{{ m.descripcion }}</td>
+            <td>{{ m.fecha }}</td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-danger" (click)="eliminar(i)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ng-template #noData>
+        <div class="p-4 text-center text-muted">
+          No hay minutas todavía.
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+
+</div>
