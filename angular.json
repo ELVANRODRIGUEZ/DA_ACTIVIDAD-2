@@ -17,7 +17,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath":"dist/bitacora-obra",
             "browser": "src/main.ts",
+            "index": "src/index.html",
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
@@ -68,6 +70,11 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/DA_ACTIVIDAD-2/"
         }
       }
     }
